@@ -32,7 +32,17 @@ class NewsPost(models.Model):
 
     @property
     def source_divesite_name(self):
-        return 'Industry Dive'
+        """ Return the real divesite source name for the newspost's source
+        """
+        source_dive = 'Industry Dive'
+        for dive_source in DIVESITE_SOURCE_NAMES:
+            url_parts = self.source.split('/')
+            dive_domain = url_parts[2]
+            domain_parts = dive_domain.split('.')
+            dive_domain = domain_parts[1]
+            if dive_domain == dive_source:
+                return DIVESITE_SOURCE_NAMES[dive_domain]
+        return source_dive
 
     def tags(self):
         return [
