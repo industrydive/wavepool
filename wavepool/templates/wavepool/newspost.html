@@ -1,6 +1,8 @@
 {% extends 'wavepool/base.html' %}
 {% load static %}
 
+{% block posttitle %}{{ newspost.title }} | {% endblock %}
+
 {% block page_content %}
 	<div class="row">
 		<div class="col-2"></div>
