@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 import datetime
+from urllib.parse import urlparse
 
 DIVESITE_SOURCE_NAMES = {
     'retaildive': 'Retail Dive',
@@ -32,7 +33,12 @@ class NewsPost(models.Model):
 
     @property
     def source_divesite_name(self):
-        return 'Industry Dive'
+        """
+        Parses the source field to determine the divesite.
+        Assume the source field is of format "http://www.[site].com/rest-of-url"
+        """
+        site = urlparse(self.source)[1].split('.')[1]
+        return DIVESITE_SOURCE_NAMES[site]
 
     def tags(self):
         return [
