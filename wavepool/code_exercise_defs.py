@@ -1,7 +1,7 @@
 code_review_defs = [
     {
         'title': 'Site front page',
-        'description': 'There are several bugs on the front page of the Wavepool site. Fix these bugs by editing the front_pag.html template file and the front_page view in views.py. Submit a pull request for a branch titled "yourlastname_yourfirstname_front_page_fixes"',  # noqa
+        'description': 'There are several bugs on the front page of the Wavepool site. Fix these bugs by editing the front_page.html template file and the front_page view in views.py. Submit a pull request for a branch titled "yourlastname_yourfirstname_front_page_fixes"',  # noqa
         'acceptance_criteria': [
             'The newspost designated as the cover story should appear in the cover story box',
             'The 3 most recent stories, excluding the cover story, should be displayed under "top stories", ordered by most recent first',  # noqa
@@ -34,7 +34,7 @@ code_design_defs = [
 code_exercise_defs = [
     {
         'title': 'Site front page',
-        'description': 'There are several bugs on the front page of the Wavepool site. Fix these bugs by editing the front_pag.html template file and the front_page view in views.py. Submit a pull request for a branch titled "yourlastname_yourfirstname_front_page_fixes"',  # noqa
+        'description': 'There are several bugs on the front page of the Wavepool site. Fix these bugs by editing the front_page.html template file and the front_page view in views.py. Submit a pull request for a branch titled "yourlastname_yourfirstname_front_page_fixes"',  # noqa
         'test_class': 'SiteFrontPage',
         'acceptance_criteria': [
             {
