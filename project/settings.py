@@ -122,4 +122,4 @@ STATIC_URL = '/static/'
 
 FIXTURE_DIRS = [os.path.join(BASE_DIR, 'fixtures'), ]
 
-SENIOR_USER = False
+SENIOR_USER = True
