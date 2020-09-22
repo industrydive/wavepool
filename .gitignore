@@ -1,5 +1,0 @@
-.vscode
-project/
-wavepool/__pycache/
-wavepool/migrations/
-db.sqlite3*
