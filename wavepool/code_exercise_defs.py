@@ -25,8 +25,7 @@ code_design_defs = [
             'For each advertisement they should be able to upload a client logo, a link that the ad should open to and the ad\'s text',
             'Each advertisement should appear on the news post that is sold for',
             'The Sales Team might sell more than one news post slot to a client at a time, so they should be able to set a single ad to multiple posts',
-        ],
-        'is_senior': True
+        ]
     },
 
 ]

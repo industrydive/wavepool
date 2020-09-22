@@ -2,43 +2,38 @@
 
 {% block page_content %}
 	<div id="instructions">
+		<div class="row">
+			<h1>Code Exercises</h1>
+		</div>
 
-		{% if code_exercise_defs %}
-			<div class="row">
-				<h1>Code Exercises</h1>
-			</div>
-			<div class="row">
-				<h2>Instructions</h2>
-			</div>
-			<div class="row">
-				<p>For each ticket below, submit a pull request to this repository that completes as many of the acceptance criteria as you can. For each acceptance criteria, a django test is noted which should pass if your solution is valid.</p>
+		<div class="row">
+			<h2>Instructions</h2>
+		</div>
+		<div class="row">
+			<p>For each ticket below, submit a pull request to this repository that completes as many of the acceptance criteria as you can. For each acceptance criteria, a django test is noted which should pass if your solution is valid.</p>
 
-				<p>For each pull request, include instructions for the reviewer to verify the behavior as well as commentary about your solutions. Code comments are encouraged.</p>
-			</div>
-			<div class="row">
-				<h2>Objectives</h2>
-			</div>
-			<div class="row">
-					<ul>
-						<li>Demonstrate basic web framework competencies using Django and Python</li>
-						<li>Demonstrate ability to read and comprehend user requests and acceptance criteria</li>
-						<li>Demonstrate ability to communicate coding decisions to other engineers</li>
-					</ul>
-			</div>
-			{% for ticket in code_exercise_defs %}
-				{% if not ticket.is_senior or show_senior_exercises and ticket.is_senior %}
-					<div class="card">
+			<p>For each pull request, include instructions for the reviewer to verify the behavior as well as commentary about your solutions. Code comments are encouraged.</p>
+		</div>
+		<div class="row">
+			<h2>Objectives</h2>
+		</div>
+		<div class="row">
+				<ul>
+					<li>Demonstrate basic web framework competencies using Django and Python</li>
+					<li>Demonstrate ability to read and comprehend user requests and acceptance criteria</li>
+					<li>Demonstrate ability to communicate coding decisions to other engineers</li>
+				</ul>
+		</div>
+		{% for ticket in code_exercise_defs %}
+			{% if not show_senior_exercises or show_senior_exercises and ticket.is_senior %}
+				<div class="card">
 						<div class="card-header">
-							<h1 class="card-title">{{ticket.title}}
-							{% if ticket.is_senior %}
-								(Senior)
-							{% endif %}
-							</h1> 
+							<h1 class="card-title">{{ticket.title}}</h1>
 						</div>
 						<div class="card-body">
-							<p class="card-text">{{ticket.description}}</p>
-							<p class="card-text">Test suit: <code>python manage.py test wavepool.tests.{{ticket.test_class}}</code></p>
-							<h2 class="card-title">Acceptance Criteria:</h2>
+						<p class="card-text">{{ticket.description}}</p>
+						<p class="card-text">Test suit: <code>python manage.py test wavepool.tests.{{ticket.test_class}}</code></p>
+						<h2 class="card-title">Acceptance Criteria:</h2>
 							<ul>
 							{% for ac in ticket.acceptance_criteria %}
 								<li class="instructable-ac">
@@ -47,16 +42,18 @@
 								</li>
 							{% endfor %}
 							</ul>
-						</div>
 					</div>
-				{% endif %}
-			{% endfor %}
-		{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
 
-		{% if code_review_defs %}
+	{% if show_senior_exercises %}
+		<div id="instructions">
 			<div class="row">
 				<h1>Code Review</h1>
 			</div>
+
 			<div class="row">
 				<h2>Instructions</h2>
 			</div>
@@ -76,19 +73,12 @@
 					</ul>
 			</div>
 			{% for ticket in code_review_defs %}
-				{% if not ticket.is_senior or show_senior_exercises and ticket.is_senior %}
-					<div class="card">
-						<div class="card-header">
-							<h1 class="card-title">{{ticket.title}}
-							{% if ticket.is_senior %}
-								(Senior)
-							{% endif %}
-							</h1> 
-						</div>
-						<div class="card-body">
-							<p class="card-text">Pull Request: <a href="{{ticket.pull_request}}">{{ticket.pull_request}}</a></p>
-							<p class="card-text">{{ticket.description}}</p>
-							<h2 class="card-title">Acceptance Criteria:</h2>
+				<div class="card">
+	  				<div class="card-header"><h1 class="card-title">{{ticket.title}}</h1></div>
+	  				<div class="card-body">
+	  					<p class="card-text">Pull Request: <a href="{{ticket.pull_request}}">{{ticket.pull_request}}</a></p>
+		  				<p class="card-text">{{ticket.description}}</p>
+		  				<h2 class="card-title">Acceptance Criteria:</h2>
 							<ul>
 							{% for ac in ticket.acceptance_criteria %}
 								<li class="instructable-ac">
@@ -96,16 +86,17 @@
 								</li>
 							{% endfor %}
 							</ul>
-						</div>
-					</div>
-				{% endif %}
+		  			</div>
+	  			</div>
 			{% endfor %}
-		{% endif %}
+		</div>
 
-		{% if code_design_defs %}
+
+		<div id="instructions">
 			<div class="row">
 				<h1>Code Design</h1>
 			</div>
+
 			<div class="row">
 				<h2>Instructions</h2>
 			</div>
@@ -124,18 +115,11 @@
 					</ul>
 			</div>
 			{% for ticket in code_design_defs %}
-				{% if not ticket.is_senior or show_senior_exercises and ticket.is_senior %}
-					<div class="card">
-						<div class="card-header">
-							<h1 class="card-title">{{ticket.title}}
-							{% if ticket.is_senior %}
-								(Senior)
-							{% endif %}
-							</h1> 
-						</div>
-						<div class="card-body">
-							<p class="card-text">{{ticket.description}}</p>
-							<h2 class="card-title">Acceptance Criteria:</h2>
+				<div class="card">
+	  				<div class="card-header"><h1 class="card-title">{{ticket.title}}</h1></div>
+	  				<div class="card-body">
+		  				<p class="card-text">{{ticket.description}}</p>
+		  				<h2 class="card-title">Acceptance Criteria:</h2>
 							<ul>
 							{% for ac in ticket.acceptance_criteria %}
 								<li class="instructable-ac">
@@ -143,11 +127,9 @@
 								</li>
 							{% endfor %}
 							</ul>
-						</div>
-					</div>
-				{% endif %}
+		  			</div>
+	  			</div>
 			{% endfor %}
-		{% endif %}
-
-	</div>
+		</div>
+	{% endif %}
 {% endblock %}
