@@ -21,13 +21,15 @@
 		<div class="col-2"></div>
 	</div>
 	<div class="newspost-detail">
-		<div class="row"><a href=""><button>edit</button></a></div>
+		{% if user.is_authenticated %}
+			<div class="row"><a id="edit-link" href="/admin/wavepool/newspost/{{newspost.id}}/change/"><button>edit</button></a></div>
+		{% endif %}
 		<div class="row">
-			<h1>{{ newspost.title }}<span class="pubdate">{{newspost.publish_date}}</span></h1>
+			<h1 id="newspost-title">{{ newspost.title }}<span class="pubdate">{{newspost.publish_date}}</span></h1>
 		</div>
 		<div class="row"><a href="{{newspost.source}}" target="_blank">See the live story at {{newspost.source_divesite_name}}</a></div>
-		<div class="row newspost-body">
-			{{ newspost.body|safe }}
+		<div class="row" id="newspost-body">
+			{{ newspost.body | safe}}
 		</div>
 	</div>
 
