@@ -14,14 +14,18 @@ def front_page(request):
             archive: the rest of the newsposts, sorted by most recent
     """
     template = loader.get_template('wavepool/frontpage.html')
-    cover_story = NewsPost.objects.all().order_by('?').first()
-    top_stories = NewsPost.objects.all().order_by('?')[:3]
-    other_stories = NewsPost.objects.all().order_by('?')
+
+    # Multiple coverstories can be set, however by design we only display one. 
+    cover_stories = NewsPost.objects.filter(is_cover_story=True).order_by('publish_date')
+    cover_story = cover_stories[0]
+    other_stories = NewsPost.objects.filter(is_cover_story=False).order_by('publish_date')
+    top_stories = other_stories[:3]
+    archive_stories = other_stories[3:]
 
     context = {
         'cover_story': cover_story,
         'top_stories': top_stories,
-        'archive': other_stories,
+        'archive': archive_stories,
     }
 
     return HttpResponse(template.render(context, request))
