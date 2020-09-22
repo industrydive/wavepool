@@ -15,15 +15,17 @@ def front_page(request):
     """
     template = loader.get_template('wavepool/frontpage.html')
 
-    # Multiple coverstories can be set, however by design we only display one. 
+    # NOTE: Multiple coverstories can be set, however by design we only display one.
+    # Query for all posts set as cover story
     cover_stories = NewsPost.objects.filter(is_cover_story=True).order_by('publish_date')
     cover_story = None
+    # Verify that query returned a valid result, for use cases where we run without models
     if cover_stories:
         cover_story = cover_stories[0]
+    # Query for all other posts and set top_stories and archive_stories
     other_stories = NewsPost.objects.filter(is_cover_story=False).order_by('publish_date')
     top_stories = other_stories[:3]
     archive_stories = other_stories[3:]
-
     context = {
         'cover_story': cover_story,
         'top_stories': top_stories,
