@@ -10,6 +10,8 @@ class NewsPostForm(forms.ModelForm):
 
 class NewsPostAdmin(admin.ModelAdmin):
     form = NewsPostForm
+    list_display = ('title', 'publish_date', 'is_cover_story')
+    ordering = ('publish_date',)
 
 
 admin.site.register(NewsPost, NewsPostAdmin)
