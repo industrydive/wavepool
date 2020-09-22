@@ -123,7 +123,7 @@ class SiteFrontPage(TestBase):
         front_page_html = BeautifulSoup(front_page.content, 'html.parser')
 
         cover_story_div = front_page_html.find('div', {'id': 'coverstory'})
-        cover_story_id = int(cover_story_div['data-story-id'])
+        cover_story_id = int(cover_story_div['data-newspost-id'])
 
         self.assertEqual(cover_story_id, cover_story.pk)
 
@@ -146,17 +146,17 @@ class SiteFrontPage(TestBase):
         top_story_1 = front_page_html.find(
             'div', {'class': 'topstory', 'data-top-story-placement': '1', }
         )
-        top_story_1_id = int(top_story_1['data-story-id'])
+        top_story_1_id = int(top_story_1['data-newspost-id'])
 
         top_story_2 = front_page_html.find(
             'div', {'class': 'topstory', 'data-top-story-placement': '2', }
         )
-        top_story_2_id = int(top_story_2['data-story-id'])
+        top_story_2_id = int(top_story_2['data-newspost-id'])
 
         top_story_3 = front_page_html.find(
             'div', {'class': 'topstory', 'data-top-story-placement': '3', }
         )
-        top_story_3_id = int(top_story_3['data-story-id'])
+        top_story_3_id = int(top_story_3['data-newspost-id'])
 
         self.assertEqual(top_story_1_id, top_stories[0].pk)
         self.assertEqual(top_story_2_id, top_stories[1].pk)
@@ -181,7 +181,7 @@ class SiteFrontPage(TestBase):
         archive_story_divs = front_page_html.find_all('div', {'class': 'archived-story'})
         self.assertEqual(len(archive_story_divs), len(archive_stories))
         for div in archive_story_divs:
-            story_id = int(div['data-archive-story-id'])
+            story_id = int(div['data-archive-newspost-id'])
             self.assertIn(story_id, [s.id for s in archive_stories])
 
     def test_newspost_teaser_render(self):
