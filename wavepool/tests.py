@@ -51,7 +51,7 @@ class NewsPostDetail(TestBase):
         for newspost in newsposts:
             page = self.client.get(newspost.url)
             page_html = BeautifulSoup(page.content, 'html.parser')
-            rendered_title = page_html.find('h1', {'id': 'newspost-title'}).text
+            rendered_title = page_html.find('h1', {'id': 'newspost-title'}).find(text=True)
             rendered_body = page_html.find('div', {'id': 'newspost-body'}).text
             self.assertEqual(rendered_title, newspost.title)
             self.assertEqual(self._clean_text(rendered_body), self._clean_text(newspost.body))
