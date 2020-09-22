@@ -32,7 +32,7 @@ class NewsPost(models.Model):
 
     @property
     def source_divesite_name(self):
-        return 'Industry Dive'
+        return DIVESITE_SOURCE_NAMES[str(self.source.split('.')[1])]
 
     def tags(self):
         return [
