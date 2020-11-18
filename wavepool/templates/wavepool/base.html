@@ -3,7 +3,9 @@
 	<head>
   		<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   		<link href="{% static 'app.css' %}" rel="stylesheet">
-  		<title>Wavepool | Industry Dive</title>
+  		{%  block title %}
+        <title>Wavepool | Industry Dive</title>
+        {%  endblock %}
   		<link rel="shortcut icon" type="/image/png" href="{% static 'favicon.ico' %}"/>
   </head>
 	<body>
