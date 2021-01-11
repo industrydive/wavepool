@@ -1,6 +1,8 @@
 {% extends 'wavepool/base.html' %}
 {% load static %}
 
+{% block page_title %}{{page_title}}{% endblock %}
+
 {% block page_content %}
 	<div class="row">
 		<div class="col-2"></div>
@@ -19,12 +21,15 @@
 		<div class="col-2"></div>
 	</div>
 	<div class="newspost-detail">
-		<div class="row"><a href=""><button>edit</button></a></div>
+		{% if request.user.is_authenticated %}
+			<div class="row"><a id="edit-link" href="{{edit_url}}"><button>edit</button></a></div>
+		{% endif %}
+		
 		<div class="row">
-			<h1>{{ newspost.title }}<span class="pubdate">{{newspost.publish_date}}</span></h1>
+			<div><h1 id="newspost-title">{{ newspost.title }}</h1><span class="pubdate">{{newspost.publish_date}}</span></div>
 		</div>
 		<div class="row"><a href="{{newspost.source}}" target="_blank">See the live story at {{newspost.source_divesite_name}}</a></div>
-		<div class="row newspost-body">
+		<div class="row" id="newspost-body">
 			{{ newspost.body|safe }}
 		</div>
 	</div>

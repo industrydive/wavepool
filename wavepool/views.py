@@ -30,8 +30,11 @@ def front_page(request):
 def newspost_detail(request, newspost_id):
     template = loader.get_template('wavepool/newspost.html')
     newspost = NewsPost.objects.get(pk=newspost_id)
+    
     context = {
-        'newspost': newspost
+        'newspost': newspost,
+        'page_title': '%s | Wavepool | Industry Dive' % newspost.title,
+        'edit_url': '/admin/wavepool/newspost/%s/change/' % newspost_id,
     }
 
     return HttpResponse(template.render(context, request))
