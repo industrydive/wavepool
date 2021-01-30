@@ -19,7 +19,11 @@
 		<div class="col-2"></div>
 	</div>
 	<div class="newspost-detail">
-		<div class="row"><a href=""><button>edit</button></a></div>
+		{% if is_staff %}
+			<div class="row">
+				<a id="edit-link" href="{{ newspost.edit_url }}"><button>edit</button></a>
+			</div>
+		{% endif %}
 		<div class="row">
 			<h1>{{ newspost.title }}<span class="pubdate">{{newspost.publish_date}}</span></h1>
 		</div>

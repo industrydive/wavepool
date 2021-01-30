@@ -38,3 +38,7 @@ class NewsPost(models.Model):
         return [
             'HR', 'Diversity & Inclusion', 'Culture'
         ]
+
+    @property
+    def edit_url(self):
+        return reverse('admin:wavepool_newspost_change', args=[self.pk])
