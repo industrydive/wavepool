@@ -34,7 +34,7 @@ class TestBase(TestCase):
 class NewsPostDetail(TestBase):
 
     def test_newspost_page_title_attribute(self):
-        """ Very that each newspost rendered at its unique URL displays the correct content
+        """ Verify that each newspost rendered at its unique URL displays the correct content
         """
         newsposts = NewsPost.objects.all()
         for newspost in newsposts:
@@ -45,7 +45,7 @@ class NewsPostDetail(TestBase):
             self.assertEqual(expected_title_tag_text, title_tag_text)
 
     def test_newspost_page_content(self):
-        """ Very that each newspost rendered at its unique URL displays the correct content
+        """ Verify that each newspost rendered at its unique URL displays the correct content
         """
         newsposts = NewsPost.objects.all()
         for newspost in newsposts:
