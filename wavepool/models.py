@@ -32,9 +32,16 @@ class NewsPost(models.Model):
 
     @property
     def source_divesite_name(self):
-        return 'Industry Dive'
+        # Implementation based on naive assumption that URL is in a
+        # <protocol>://www.<hostname>.xyz/asdf-asdf-asdf format
+        hostname = self.source.split('/')[2].split('.')[1]
+        return DIVESITE_SOURCE_NAMES[hostname]
 
     def tags(self):
         return [
             'HR', 'Diversity & Inclusion', 'Culture'
         ]
+
+    @property
+    def edit_url(self):
+        return reverse('admin:wavepool_newspost_change', args=[self.pk])

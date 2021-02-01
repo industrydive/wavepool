@@ -30,8 +30,10 @@ def front_page(request):
 def newspost_detail(request, newspost_id):
     template = loader.get_template('wavepool/newspost.html')
     newspost = NewsPost.objects.get(pk=newspost_id)
+    # import pdb; pdb.set_trace()
     context = {
-        'newspost': newspost
+        'newspost': newspost,
+        'is_staff': request.user.is_staff
     }
 
     return HttpResponse(template.render(context, request))

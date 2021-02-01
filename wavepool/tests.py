@@ -34,7 +34,7 @@ class TestBase(TestCase):
 class NewsPostDetail(TestBase):
 
     def test_newspost_page_title_attribute(self):
-        """ Very that each newspost rendered at its unique URL displays the correct content
+        """ Verify that each newspost rendered at its unique URL displays the correct content
         """
         newsposts = NewsPost.objects.all()
         for newspost in newsposts:
@@ -45,16 +45,18 @@ class NewsPostDetail(TestBase):
             self.assertEqual(expected_title_tag_text, title_tag_text)
 
     def test_newspost_page_content(self):
-        """ Very that each newspost rendered at its unique URL displays the correct content
+        """ Verify that each newspost rendered at its unique URL displays the correct content
         """
         newsposts = NewsPost.objects.all()
         for newspost in newsposts:
+
             page = self.client.get(newspost.url)
             page_html = BeautifulSoup(page.content, 'html.parser')
             rendered_title = page_html.find('h1', {'id': 'newspost-title'}).text
             rendered_body = page_html.find('div', {'id': 'newspost-body'}).text
+            newspost_body = BeautifulSoup(newspost.body, 'html.parser').text
             self.assertEqual(rendered_title, newspost.title)
-            self.assertEqual(self._clean_text(rendered_body), self._clean_text(newspost.body))
+            self.assertEqual(self._clean_text(rendered_body), self._clean_text(newspost_body))
 
     def test_newspost_body_render(self):
         """ Verify that newsposts rendered at their URL do not display raw HTML to the screen
